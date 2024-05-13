@@ -35,12 +35,12 @@ class CustomTokenObtainPairView(TokenObtainPairView):
             # Perform additional checks or logic based on user role
             if user.role == 'staff':
                 # Staff-specific logic
-                staff_permissions = ['view_orders', 'manage_inventory']
-                #request.user.user_permissions.add(*staff_permissions)
+                # staff_permissions = ['view_orders', 'manage_inventory']
+                # request.user.user_permissions.add(*staff_permissions)
                 pass
             elif user.role == 'customer':
                 # Customer-specific logic
-                request.user.default_payment_method = 'credit_card'
+                # request.user.default_payment_method = 'credit_card'
                 pass
             
             # Call the parent's post method to generate and return the tokens

@@ -7,8 +7,9 @@ class User(AbstractUser):
         ('staff', 'Restaurant Staff'),
         ('admin', 'Admin'),
     )
+    first_name=models.CharField(max_length=50)
+    last_name=models.CharField(max_length=50)
     role = models.CharField(max_length=10, choices=USER_ROLES, default='customer')
-    # Add any additional fields specific to your user model
     
 class Restaurant(models.Model):
     name = models.CharField(max_length=100)

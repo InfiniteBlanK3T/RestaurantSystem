@@ -1,1 +1,6 @@
+*.pyc
+__pycache__/
 .venv/
+RestaurantSystem/__pycache__/__init__.cpython-310.pyc
+RestaurantSystem/__pycache__/settings.cpython-310.pyc
+RestaurantSystem/__pycache__/urls.cpython-310.pyc

@@ -1,1 +1,4 @@
 djangorestframework
+djangorestframework-simplejwt
+coverage
+Pillow

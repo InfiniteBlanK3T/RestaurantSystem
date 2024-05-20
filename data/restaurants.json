@@ -1,0 +1,29 @@
+[
+    {
+        "model": "restaurant.restaurant",
+        "pk": 1,
+        "fields": {
+            "name": "Relaxing Koala - Branch 1",
+            "address": "123 Main St",
+            "phone_number": "123-456-7890"
+        }
+    },
+    {
+        "model": "restaurant.restaurant",
+        "pk": 2,
+        "fields": {
+            "name": "Relaxing Koala - Branch 2",
+            "address": "456 Elm St",
+            "phone_number": "123-456-7890"
+        }
+    },
+    {
+        "model": "restaurant.restaurant",
+        "pk": 3,
+        "fields": {
+            "name": "Relaxing Koala - Branch 3",
+            "address": "789 Oak St",
+            "phone_number": "123-456-7890"
+        }
+    }
+]

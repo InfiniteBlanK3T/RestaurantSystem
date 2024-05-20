@@ -64,7 +64,10 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 class MenuItemViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
-    permission_classes = [permissions.IsAuthenticated, IsRestaurantStaff]
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return []
+        return [permissions.IsAuthenticated(), IsRestaurantStaff()]
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()

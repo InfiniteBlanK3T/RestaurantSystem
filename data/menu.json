@@ -1,0 +1,277 @@
+[
+    {
+        "model": "restaurant.menuitem",
+        "pk": 1,
+        "fields": {
+            "name": "Classic Cheeseburger",
+            "description": "Juicy beef patty topped with melted cheddar cheese, crisp lettuce, ripe tomatoes, and tangy pickles, served on a toasted bun.",
+            "price": "9.99",
+            "image_url": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1299&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 2,
+        "fields": {
+            "name": "Spaghetti Bolognese",
+            "description": "Al dente spaghetti noodles smothered in savory homemade Bolognese sauce, garnished with freshly grated Parmesan cheese.",
+            "price": "12.99",
+            "image_url": "https://images.unsplash.com/photo-1572441713132-c542fc4fe282?q=80&w=1064&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 3,
+        "fields": {
+            "name": "Grilled Chicken Caesar Salad",
+            "description": "Tender grilled chicken breast slices served over crisp romaine lettuce, tossed in creamy Caesar dressing, topped with crunchy croutons and Parmesan cheese.",
+            "price": "10.99",
+            "image_url": "https://images.unsplash.com/photo-1604909052743-94e838986d24?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 4,
+        "fields": {
+            "name": "Margherita Pizza",
+            "description": "Traditional thin-crust pizza topped with tangy tomato sauce, fresh mozzarella cheese, fragrant basil leaves, and a drizzle of olive oil.",
+            "price": "11.99",
+            "image_url": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 5,
+        "fields": {
+            "name": "Crispy Chicken Tenders",
+            "description": "Crispy breaded chicken tenderloins served with your choice of dipping sauce.",
+            "price": "8.99",
+            "image_url": "https://plus.unsplash.com/premium_photo-1667683471745-2327853febc1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 6,
+        "fields": {
+            "name": "Vegetable Stir-Fry",
+            "description": "Assorted fresh vegetables stir-fried to perfection in a flavorful sauce, served over steamed rice.",
+            "price": "10.99",
+            "image_url": "https://images.unsplash.com/photo-1516901121982-4ba280115a36?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 7,
+        "fields": {
+            "name": "Grilled Salmon Fillet",
+            "description": "Succulent salmon fillet grilled to perfection, served with a side of seasonal vegetables and lemon wedges.",
+            "price": "14.99",
+            "image_url": "https://img.freepik.com/free-photo/delicious-cooked-fish-meal-front-view_23-2148708626.jpg?t=st=1716179818~exp=1716183418~hmac=028d48ce0b01ebd84288f187bc0f925750b4f16b73519e1027571a2cce997c55&w=996",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 8,
+        "fields": {
+            "name": "Classic Caesar Salad",
+            "description": "Crisp romaine lettuce tossed in creamy Caesar dressing, topped with crunchy croutons and Parmesan cheese.",
+            "price": "8.99",
+            "image_url": "https://img.freepik.com/free-photo/fried-chicken-with-vegetable_1203-8974.jpg?t=st=1716179781~exp=1716183381~hmac=31ffd0845fb7fc74626fab9c974de9d6b374480eeeb2900260edbaf202f22b4e&w=996",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 9,
+        "fields": {
+            "name": "Beef Tacos",
+            "description": "Soft corn tortillas filled with seasoned ground beef, shredded lettuce, diced tomatoes, and shredded cheddar cheese.",
+            "price": "9.99",
+            "image_url": "https://img.freepik.com/free-photo/close-up-delicious-tacos_23-2150831105.jpg?t=st=1716182309~exp=1716185909~hmac=dd766a1d5253031e698852a8d84bdbe227d780474b45a42a7a2998825f4ef3c1&w=996",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 10,
+        "fields": {
+            "name": "Vegetarian Pizza",
+            "description": "Thin-crust pizza topped with zesty tomato sauce, a medley of fresh vegetables, and melted mozzarella cheese.",
+            "price": "11.99",
+            "image_url": "https://img.freepik.com/premium-photo/traditional-italian-pizza-with-shrimp-mozzarella-arugula-dark-blue-stone-table_69064-986.jpg?w=996",
+            "restaurant": 1
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 11,
+        "fields": {
+            "name": "Chicken Alfredo Pasta",
+            "description": "Tender chicken breast slices tossed with fettuccine pasta in a creamy Alfredo sauce, garnished with parsley.",
+            "price": "13.99",
+            "image_url": "https://img.freepik.com/premium-photo/traditional-italian-dish-spaghetti-carbonara-with-bacon-cream-sauce_124865-1414.jpg?w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 12,
+        "fields": {
+            "name": "BBQ Bacon Burger",
+            "description": "Grilled beef patty topped with crispy bacon, melted cheddar cheese, and smoky BBQ sauce, served on a toasted bun.",
+            "price": "10.99",
+            "image_url": "https://img.freepik.com/free-photo/grilled-beef-burger-with-fresh-tomato-cheese-salad-generated-by-artificial-intelligence_188544-127596.jpg?t=st=1716179620~exp=1716183220~hmac=ea9a0dc08675e4e727cae656291e9bf568726fe2291f28b216e6b8f2e81c564b&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 13,
+        "fields": {
+            "name": "Caprese Salad",
+            "description": "Slices of ripe tomatoes, fresh mozzarella cheese, and basil leaves drizzled with balsamic glaze and olive oil.",
+            "price": "9.99",
+            "image_url": "https://img.freepik.com/free-photo/italian-caprese-salad-with-tomatoes-basil-mozzarella-olives-olive-oil-wooden-board-italian-traditional-caprese-salad-ingredients-mediterranean-organic-natural-food-concept_1150-44847.jpg?t=st=1716182713~exp=1716186313~hmac=b45ed0fb664881488b529e728be9d2465a322f01972e0e7b9f1e08f42360934e&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 14,
+        "fields": {
+            "name": "Vegetable Lasagna",
+            "description": "Layers of lasagna noodles, marinara sauce, mixed vegetables, and creamy ricotta cheese, baked to perfection.",
+            "price": "11.99",
+            "image_url": "https://img.freepik.com/free-photo/vegetarian-vegetable-casserole-with-zucchini-mushrooms-cherry-tomatoes_2829-11076.jpg?t=st=1716182735~exp=1716186335~hmac=f15e8fcd4273bbc62f3c81b567fdd0175a7052e09ca30334ae820fee492ee4bf&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 15,
+        "fields": {
+            "name": "Margarita Flatbread",
+            "description": "Crispy flatbread topped with tangy tomato sauce, fresh mozzarella cheese, and basil leaves.",
+            "price": "9.99",
+            "image_url": "https://img.freepik.com/free-photo/traditional-lasagna-with-bolognese-sauce-topped-with-basil-leaves-served-white-plate_505751-5134.jpg?t=st=1716179475~exp=1716183075~hmac=b124992c5ed4901b49e54dfdc857d78c933b65570a2bf4ba3672e667102706a5&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 16,
+        "fields": {
+            "name": "Garlic Parmesan Wings",
+            "description": "Crispy chicken wings tossed in garlic Parmesan sauce, served with celery sticks and ranch dressing.",
+            "price": "10.99",
+            "image_url": "https://img.freepik.com/free-photo/top-view-fried-chicken-with-nuggets-sauce_23-2148646587.jpg?t=st=1716179341~exp=1716182941~hmac=f8ff0ab470d4c86ea2590b39f7dbd7c8648a6d68ee2f0ba570a6026547557bba&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 17,
+        "fields": {
+            "name": "Greek Salad",
+            "description": "Crisp lettuce, cucumbers, tomatoes, red onions, Kalamata olives, and feta cheese, tossed in Greek vinaigrette.",
+            "price": "9.99",
+            "image_url": "https://img.freepik.com/free-photo/top-view-greek-salad-bowl-with-white-cheese-bell-peppers-cucumber-tomato_140725-5129.jpg?t=st=1716179252~exp=1716182852~hmac=525c70bb097fb68315a5954394d2a9473599853b7265b71558022c39ad76c036&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 18,
+        "fields": {
+            "name": "Beef and Broccoli Stir-Fry",
+            "description": "Sliced beef and fresh broccoli florets stir-fried in a savory sauce, served over steamed rice.",
+            "price": "12.99",
+            "image_url": "https://img.freepik.com/free-photo/pre-prepared-food-showcasing-ready-eat-delicious-meals-go_23-2151246055.jpg?t=st=1716179131~exp=1716182731~hmac=b2251af090e67892c176785fa09de7af14862fc4e4a7aa222a4914397eaa0208&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 19,
+        "fields": {
+            "name": "Margherita Pizza",
+            "description": "Traditional thin-crust pizza topped with tangy tomato sauce, fresh mozzarella cheese, fragrant basil leaves, and a drizzle of olive oil.",
+            "price": "11.99",
+            "image_url": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 20,
+        "fields": {
+            "name": "Fettuccine Carbonara",
+            "description": "Fettuccine pasta tossed in a creamy sauce with crispy bacon, Parmesan cheese, and black pepper.",
+            "price": "12.99",
+            "image_url": "https://img.freepik.com/free-photo/salmon-fettuccini-with-cream-sauce-parmesan-avocado_140725-5910.jpg?t=st=1716178955~exp=1716182555~hmac=3c0dbea3b9db1cd8cfb57dbeb29ea35d184a506114ddfc2aa43e6c974b7a0a58&w=996",
+            "restaurant": 2
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 21,
+        "fields": {
+            "name": "Sushi Platter",
+            "description": "Assorted nigiri and maki sushi rolls served with pickled ginger, wasabi, and soy sauce.",
+            "price": "16.99",
+            "image_url": "https://img.freepik.com/free-photo/sushi-set-with-hot-cold-rolls-wood-platter_140725-1625.jpg?t=st=1716178872~exp=1716182472~hmac=5654587273b254f1413870b652edee0893d9f7d4d8ac71857fe7dbf24ffa3f66&w=996",
+            "restaurant": 3
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 22,
+        "fields": {
+            "name": "Pad Thai",
+            "description": "Stir-fried rice noodles with shrimp, tofu, bean sprouts, and peanuts in a tangy tamarind sauce.",
+            "price": "13.99",
+            "image_url": "https://img.freepik.com/free-photo/plate-noodles-with-lime-side_188544-25389.jpg?t=st=1716178844~exp=1716182444~hmac=14832ec04c222700dd18618989cdf037cac5509ce645aa7e87d2d696119938d3&w=996",
+            "restaurant": 3
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 23,
+        "fields": {
+            "name": "Beef Teriyaki Bowl",
+            "description": "Grilled beef slices glazed in teriyaki sauce, served over steamed rice with stir-fried vegetables.",
+            "price": "14.99",
+            "image_url": "https://img.freepik.com/free-photo/grilled-meat-vegetables-plate-healthy-meal-generated-by-artificial-intelligence_188544-239893.jpg?t=st=1716178799~exp=1716182399~hmac=2e2238acb95973f3c131d1b60a5ac1170dcd121dd02cedb1f9295498beb1707d&w=996",
+            "restaurant": 3
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 24,
+        "fields": {
+            "name": "Chicken Katsu",
+            "description": "Breaded and fried chicken cutlet served with tonkatsu sauce, shredded cabbage, and steamed rice.",
+            "price": "12.99",
+            "image_url": "https://img.freepik.com/free-photo/crispy-chicken-nugget-garnished-with-fresh-herbs_140725-1327.jpg?t=st=1716177772~exp=1716181372~hmac=cb068cbbc5fb6b49ee2235d207bab842d79c7546b1e97712ec9613b4a5db4b4f&w=996",
+            "restaurant": 3
+        }
+    },
+    {
+        "model": "restaurant.menuitem",
+        "pk": 25,
+        "fields": {
+            "name": "Vegetable Tempura",
+            "description": "Assorted vegetables dipped in a light tempura batter and fried until crispy, served with tempura dipping sauce.",
+            "price": "10.99",
+            "image_url": "https://plus.unsplash.com/premium_photo-1667807522888-911d7e8f0791?q=80&w=1219&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "restaurant": 3
+        }
+    }
+]

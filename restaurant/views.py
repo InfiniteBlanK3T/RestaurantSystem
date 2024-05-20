@@ -82,11 +82,14 @@ class ReservationViewSet(viewsets.ModelViewSet):
 def register(request):
     form = CustomUserCreationForm(request.data)
     if form.is_valid():
-        user = form.save()
-        return Response({'success': True, 'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+        try:
+            user = form.save()
+            return Response({'success': True, 'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response({'success': False, 'message': 'Registration failed', 'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     else:
-        return Response({'success': False, 'errors': form.errors}, status=status.HTTP_400_BAD_REQUEST)
-
+        return Response({'success': False, 'message': 'Registration failed. Form is invalid', 'errors': form.errors}, status=status.HTTP_400_BAD_REQUEST)
+@csrf_exempt
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def user_login(request):

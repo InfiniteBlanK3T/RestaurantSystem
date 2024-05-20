@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'menu-items', MenuItemViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'reservations', ReservationViewSet)
+router.register(r'restaurants', views.RestaurantViewSet)
 
 urlpatterns = [
     path('token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),

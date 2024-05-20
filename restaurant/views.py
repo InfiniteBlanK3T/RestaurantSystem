@@ -18,9 +18,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CustomUserCreationForm
 from .permissions import IsCustomer, IsRestaurantStaff
-from .serializers import MenuItemSerializer, OrderSerializer, ReservationSerializer
+from .serializers import MenuItemSerializer, OrderSerializer, ReservationSerializer, RestaurantSerializer
 
-from .models import MenuItem, Order, Reservation
+from .models import MenuItem, Order, Reservation, Restaurant
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
@@ -68,6 +68,22 @@ class MenuItemViewSet(viewsets.ModelViewSet):
         if self.request.method == 'GET':
             return []
         return [permissions.IsAuthenticated(), IsRestaurantStaff()]
+
+    def get_queryset(self):
+        queryset = MenuItem.objects.all()
+        restaurant_name = self.request.query_params.get('restaurant_name', None)
+        if restaurant_name is not None:
+            queryset = queryset.filter(restaurant__name=restaurant_name)
+        return queryset
+
+class RestaurantViewSet(viewsets.ModelViewSet):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            return []
+        return [permissions.IsAuthenticated(), IsRestaurantStaff()]
+
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()

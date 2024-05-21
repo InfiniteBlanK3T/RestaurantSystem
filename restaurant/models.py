@@ -38,18 +38,39 @@ class MenuItem(models.Model):
     # Add any additional fields
 
 class Order(models.Model):
+    STATUS_CHOICES = [
+            ('received', 'Received'),
+            ('preparing', 'Preparing'),
+            ('ready', 'Ready'),
+            ('delivered', 'Delivered'),
+            ('cancelled', 'Cancelled'),
+    ]
+    AUS_STATES = [
+        ('NSW', 'New South Wales'),
+        ('VIC', 'Victoria'),
+        ('QLD', 'Queensland'),
+        ('SA', 'South Australia'),
+        ('WA', 'Western Australia'),
+        ('TAS', 'Tasmania'),
+        ('NT', 'Northern Territory'),
+        ('ACT', 'Australian Capital Territory'),
+    ]
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=255, default='N/A')
+    address = models.CharField(max_length=255, default='N/A')
+    city = models.CharField(max_length=255, default='N/A')
+    state_province = models.CharField(max_length=255, choices=AUS_STATES, default='VIC')
+    zip_postal_code = models.CharField(max_length=10, default='N/A')
     created_at = models.DateTimeField(auto_now_add=True)
     total_amount = models.DecimalField(max_digits=8, decimal_places=2)
-    status = models.CharField(max_length=20)
-    # Add any additional fields
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Received')
+    order_items = models.ManyToManyField(MenuItem, through='OrderItem')
     
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
     
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

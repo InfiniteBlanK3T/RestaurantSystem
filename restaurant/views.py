@@ -20,7 +20,7 @@ from .forms import CustomUserCreationForm
 from .permissions import IsCustomer, IsRestaurantStaff
 from .serializers import MenuItemSerializer, OrderSerializer, ReservationSerializer, RestaurantSerializer
 
-from .models import MenuItem, Order, Reservation, Restaurant
+from .models import MenuItem, Order, Reservation, Restaurant, OrderItem
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
@@ -84,11 +84,29 @@ class RestaurantViewSet(viewsets.ModelViewSet):
             return []
         return [permissions.IsAuthenticated(), IsRestaurantStaff()]
 
-
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated, IsCustomer]
+
+    def get_queryset(self):
+        # Only allow users to see their own orders
+        return Order.objects.filter(user=self.request.user)
+
+    def get_permissions(self):
+        # Allow staff to view orders, but only allow customers to create, update, or delete orders
+        if self.request.method in ['GET']:
+            return [permissions.IsAuthenticated()]
+        return [permissions.IsAuthenticated(), IsCustomer()]
+
+    def create(self, request, *args, **kwargs):
+        data = request.data.copy()
+        data['user'] = request.user.id
+        order_serializer = self.get_serializer(data=data)
+        if order_serializer.is_valid():
+            order = order_serializer.save()
+            return Response(order_serializer.data, status=status.HTTP_201_CREATED)
+        print(f"Serializer errors: {order_serializer.errors}")
+        return Response(order_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()

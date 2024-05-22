@@ -18,9 +18,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CustomUserCreationForm
 from .permissions import IsCustomer, IsRestaurantStaff
-from .serializers import MenuItemSerializer, OrderSerializer, ReservationSerializer, RestaurantSerializer
+from .serializers import MenuItemSerializer, OrderSerializer, ReservationSerializer, RestaurantSerializer, FeedbackSerializer
 
-from .models import MenuItem, Order, Reservation, Restaurant, OrderItem
+from .models import MenuItem, Order, Reservation, Restaurant, OrderItem, Feedback
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
@@ -104,7 +104,7 @@ class OrderViewSet(viewsets.ModelViewSet):
         order_serializer = self.get_serializer(data=data)
         if order_serializer.is_valid():
             order = order_serializer.save()
-            return Response(order_serializer.data, status=status.HTTP_201_CREATED)
+            return Response({'order_id': order.id}, status=status.HTTP_201_CREATED)
         print(f"Serializer errors: {order_serializer.errors}")
         return Response(order_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -112,6 +112,14 @@ class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
     permission_classes = [permissions.IsAuthenticated, IsCustomer]
+    
+class FeedbackViewSet(viewsets.ModelViewSet):
+    queryset = Feedback.objects.all()
+    serializer_class = FeedbackSerializer
+    permission_classes = [permissions.IsAuthenticated, IsCustomer]
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 @csrf_exempt
 @api_view(['POST'])

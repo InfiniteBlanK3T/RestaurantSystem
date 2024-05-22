@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MenuItem, Order, Reservation, Restaurant, OrderItem
+from .models import MenuItem, Order, Reservation, Restaurant, OrderItem, Feedback
 
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,19 +24,26 @@ class OrderSerializer(serializers.ModelSerializer):
         order_items_data = validated_data.pop('order_items')
         order = Order.objects.create(**validated_data)
         for order_item_data in order_items_data:
-            print(f'order_item_data: {order_item_data}')  # Debug print
+            # print(f'order_item_data: {order_item_data}')  # Debug print
             menu_item_id = order_item_data.pop('menu_item').id
             quantity = order_item_data.pop('quantity')
-            print(f'menu_item_id: {menu_item_id}, quantity: {quantity}')  # Debug print
+            # print(f'menu_item_id: {menu_item_id}, quantity: {quantity}')  # Debug print
             OrderItem.objects.create(order=order, menu_item_id=menu_item_id, quantity=quantity)
         return order
 
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        fields = ['id', 'user', 'restaurant', 'date', 'time', 'party_size']
+        fields = ['user', 'restaurant', 'date', 'time', 'party_size']
         
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = '__all__'
+
+class FeedbackSerializer(serializers.ModelSerializer):
+    # user = serializers.PrimaryKeyRelatedField(readonly=True) // test
+    
+    class Meta:
+        model = Feedback
+        fields = [ 'order', 'rating', 'comment', 'created_at']

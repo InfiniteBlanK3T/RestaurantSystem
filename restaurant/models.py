@@ -10,6 +10,8 @@ class User(AbstractUser):
     )
     first_name=models.CharField(max_length=50)
     last_name=models.CharField(max_length=50)
+    phone_number=models.CharField(max_length=20, blank=True, null=True)
+    address=models.CharField(max_length=255, blank=True, null=True)
     role = models.CharField(max_length=10, choices=USER_ROLES, default='customer')
     
 class Restaurant(models.Model):

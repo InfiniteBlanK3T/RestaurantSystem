@@ -18,9 +18,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 from .forms import CustomUserCreationForm
 from .permissions import IsCustomer, IsRestaurantStaff
-from .serializers import MenuItemSerializer, OrderSerializer, ReservationSerializer, RestaurantSerializer, FeedbackSerializer
+from .serializers import MenuItemSerializer, OrderSerializer, ReservationSerializer, RestaurantSerializer, FeedbackSerializer, UserSerializer
 
-from .models import MenuItem, Order, Reservation, Restaurant, OrderItem, Feedback
+from .models import MenuItem, Order, Reservation, Restaurant, OrderItem, Feedback, User
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
@@ -60,7 +60,12 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         else:
             # Handle invalid credentials
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-        
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated, IsRestaurantStaff]
+
 class MenuItemViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
@@ -111,7 +116,10 @@ class OrderViewSet(viewsets.ModelViewSet):
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [permissions.IsAuthenticated, IsCustomer]
+    permission_classes = [permissions.IsAuthenticated, IsRestaurantStaff]
+    
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
     
 class FeedbackViewSet(viewsets.ModelViewSet):
     queryset = Feedback.objects.all()

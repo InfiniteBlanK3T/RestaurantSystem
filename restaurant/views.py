@@ -93,10 +93,6 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
-    def get_queryset(self):
-        # Only allow users to see their own orders
-        return Order.objects.filter(user=self.request.user)
-
     def get_permissions(self):
         # Allow staff to view orders, but only allow customers to create, update, or delete orders
         if self.request.method in ['GET']:
@@ -116,7 +112,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [permissions.IsAuthenticated, IsRestaurantStaff]
+    permission_classes = [permissions.IsAuthenticated]
     
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

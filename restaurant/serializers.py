@@ -6,15 +6,13 @@ class MenuItemSerializer(serializers.ModelSerializer):
         model = MenuItem
         fields = ['id', 'name', 'description', 'price', 'image', 'restaurant']
         
-class OrderItemSerializer(serializers.ModelSerializer):
-    menu_item = serializers.PrimaryKeyRelatedField(queryset=MenuItem.objects.all())
-      
+class OrderItemSerializer(serializers.ModelSerializer):      
     class Meta:
         model = OrderItem
-        fields = ['menu_item', 'quantity']
+        fields = ['order','menu_item', 'quantity']
 
 class OrderSerializer(serializers.ModelSerializer):
-    order_items = OrderItemSerializer(many=True)
+    order_items = OrderItemSerializer(many=True, read_only=True)
 
     class Meta:
         model = Order
@@ -32,9 +30,12 @@ class OrderSerializer(serializers.ModelSerializer):
         return order
 
 class ReservationSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    id = serializers.PrimaryKeyRelatedField(read_only=True)
+    
     class Meta:
         model = Reservation
-        fields = ['user','restaurant', 'date', 'time', 'party_size']
+        fields = ['id','user','restaurant', 'date', 'time', 'party_size']
         
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,18 +1,14 @@
-import json
-from django.http import JsonResponse
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.views.decorators.csrf import csrf_exempt
-
-
 # Rest Framework
+from django.contrib.auth import authenticate
 from rest_framework import viewsets, permissions, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 from rest_framework.permissions import AllowAny, IsAuthenticated
+
+from decimal import Decimal
+from django.db.models import Count, Sum
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -22,53 +18,46 @@ from .serializers import MenuItemSerializer, OrderSerializer, ReservationSeriali
 
 from .models import MenuItem, Order, Reservation, Restaurant, OrderItem, Feedback, User
 
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        data = super().validate(attrs)
-        
-        # Include additional user information in the token payload
-        user = self.user
-        data['user_id'] = user.id
-        data['user_role'] = user.role
-        
-        return data
 
-class CustomTokenObtainPairView(TokenObtainPairView):
-    serializer_class = CustomTokenObtainPairSerializer
-    
-    def post(self, request):
-        # Override the post method to include additional logic
-        username = request.data.get('username')
-        password = request.data.get('password')
-        
-        user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
-            # Perform additional checks or logic based on user role
-            if user.role == 'staff':
-                # Staff-specific logic
-                # staff_permissions = ['view_orders', 'manage_inventory']
-                # request.user.user_permissions.add(*staff_permissions)
-                pass
-            elif user.role == 'customer':
-                # Customer-specific logic
-                # request.user.default_payment_method = 'credit_card'
-                pass
-            
-            # Call the parent's post method to generate and return the tokens
-            return super().post(request)
-        else:
-            # Handle invalid credentials
-            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+class SalesAnalyticsView(APIView):
+    permission_classes = [IsAuthenticated, IsRestaurantStaff]
+
+    def get(self, request):
+        # Total Revenue
+        total_revenue = Order.objects.aggregate(total=Sum('total_amount'))['total'] or Decimal('0.00')
+
+        # Average Order Value
+        order_count = Order.objects.count()
+        average_order_value = total_revenue / order_count if order_count > 0 else Decimal('0.00')
+
+        # Popular Menu Items
+        popular_menu_items = (
+            OrderItem.objects.values('menu_item__name', 'menu_item__description', 'menu_item__price')
+            .annotate(count=Count('menu_item'))
+            .order_by('-count')[:10]
+        )
+
+        return Response({
+            'total_revenue': total_revenue,
+            'average_order_value': average_order_value,
+            'popular_menu_items': list(popular_menu_items)
+        })
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated, IsRestaurantStaff]
+    
+    def get_queryset(self):
+        user = self.request.user
+        if IsRestaurantStaff().has_permission(self.request, self):
+            return User.objects.all()
+        else:
+            return User.objects.filter(id=user.id)
 
 class MenuItemViewSet(viewsets.ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+    
     def get_permissions(self):
         if self.request.method == 'GET':
             return []
@@ -98,16 +87,28 @@ class OrderViewSet(viewsets.ModelViewSet):
         if self.request.method in ['GET']:
             return [permissions.IsAuthenticated()]
         return [permissions.IsAuthenticated(), IsCustomer()]
+    
+    def get_queryset(self):
+        queryset = Order.objects.all()
+        user = self.request.user
+        if user.role == 'customer':
+            queryset = queryset.filter(user=user)
+        return queryset
 
     def create(self, request, *args, **kwargs):
         data = request.data.copy()
         data['user'] = request.user.id
+        order_items_data = data.pop('order_items', [])
         order_serializer = self.get_serializer(data=data)
         if order_serializer.is_valid():
             order = order_serializer.save()
+            for order_item_data in order_items_data:
+                menu_item = MenuItem.objects.get(id=order_item_data.pop('menu_item'))
+                OrderItem.objects.create(order=order, menu_item=menu_item, **order_item_data)
             return Response({'order_id': order.id}, status=status.HTTP_201_CREATED)
         print(f"Serializer errors: {order_serializer.errors}")
         return Response(order_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 class ReservationViewSet(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()

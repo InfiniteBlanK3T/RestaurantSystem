@@ -47,6 +47,7 @@ AUTH_USER_MODEL = 'restaurant.User'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
+    "https://restaurantsystem-frontend.fly.dev",
 ]
 
 CSRF_COOKIE_SECURE = True

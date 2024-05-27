@@ -25,5 +25,14 @@
             "address": "789 Oak St",
             "phone_number": "123-456-7890"
         }
+    },
+    {
+        "model": "restaurant.restaurant",
+        "pk": 4,
+        "fields": {
+            "name": "Relaxing Koala - Branch 4",
+            "address": "910 Ana St",
+            "phone_number": "123-456-7890"
+        }
     }
 ]

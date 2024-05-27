@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'orca-app-4orky.ondigitalocean.app',
-    'restaurantsystembackend-production.up.railway.app',
+    'restaurantsystem-backend.railway.internal',
 ]
 
 # ======================== REST ========================

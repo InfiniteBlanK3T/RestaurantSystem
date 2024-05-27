@@ -26,10 +26,7 @@ SECRET_KEY = 'django-insecure-t1h8vm&9c*hg*$%k$jae16w%ewqfe@!&8bqhst-5w*(@l0r03e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'restaurantsystembackend-production.up.railway.app',
-    'restaurantsystem-backend.railway.internal',
-]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # ======================== REST ========================
 REST_FRAMEWORK = {

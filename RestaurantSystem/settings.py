@@ -45,7 +45,9 @@ REST_FRAMEWORK = {
 ROOT_URLCONF = 'RestaurantSystem.urls'
 AUTH_USER_MODEL = 'restaurant.User'
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8080",
+]
 
 CSRF_COOKIE_SECURE = True
 

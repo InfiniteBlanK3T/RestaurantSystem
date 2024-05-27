@@ -1,6 +1,0 @@
-services:
-  web:
-    image: Dockerfile
-    buildArgs:
-      - .
-    port: 8000

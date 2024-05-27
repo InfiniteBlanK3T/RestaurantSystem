@@ -46,8 +46,8 @@ ROOT_URLCONF = 'RestaurantSystem.urls'
 AUTH_USER_MODEL = 'restaurant.User'
 
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_COOKIE_NAME = 'csrftoken'
-CSRF_HEADER_NAME = 'X-CSRFToken'
+
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 

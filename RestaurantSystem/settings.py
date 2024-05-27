@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-t1h8vm&9c*hg*$%k$jae16w%ewqfe@!&8bqhst-5w*(@l0r03e
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'orca-app-4orky.ondigitalocean.app',
+    'restaurantsystembackend-production.up.railway.app',
     'restaurantsystem-backend.railway.internal',
 ]
 

@@ -26,19 +26,22 @@ class SalesAnalyticsView(APIView):
         # Total Revenue
         total_revenue = Order.objects.aggregate(total=Sum('total_amount'))['total'] or Decimal('0.00')
 
-        # Average Order Value
+       # Order Count
         order_count = Order.objects.count()
+        
+        # Average Order Value
         average_order_value = total_revenue / order_count if order_count > 0 else Decimal('0.00')
 
         # Popular Menu Items
         popular_menu_items = (
-            OrderItem.objects.values('menu_item__name', 'menu_item__description', 'menu_item__price')
+            OrderItem.objects.values('menu_item__name', 'menu_item__price')
             .annotate(count=Count('menu_item'))
             .order_by('-count')[:10]
         )
 
         return Response({
             'total_revenue': total_revenue,
+            'number_of_orders': order_count,
             'average_order_value': average_order_value,
             'popular_menu_items': list(popular_menu_items)
         })

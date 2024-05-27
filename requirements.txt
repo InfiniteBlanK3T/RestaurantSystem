@@ -3,3 +3,4 @@ djangorestframework-simplejwt
 coverage
 Pillow
 django-cors-headers
+gunicorn

@@ -7,10 +7,10 @@ If you want to try it out, please pull the project to your PC then build the ima
 - Require: [Docker](https://www.docker.com/products/docker-desktop/)
 - The project is containerized run
 -   `docker build -t restaurantsystem.backend .`
--   `docker run -p 8000:8000 backend`
+-   `docker run -p 8000:8000 restaurantsystem.backend`
 
 
-- If running project locally, best practices:
+- If running project locally for Development, best practices:
   - 1st. Creating a local environment. `python3 -m venv .venv
 source .venv/bin/activate`
   - 2nd. Install dependencies `pip install -r requirements.txt`

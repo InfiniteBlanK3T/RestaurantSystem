@@ -4,7 +4,7 @@
 
 ## Side Note:
 If you want to try it out, please pull the project to your PC then build the image with Docker.
-Required: [Docker](https://www.docker.com/products/docker-desktop/)
+- Require: [Docker](https://www.docker.com/products/docker-desktop/)
 - The project is containerized run
 -   `docker build -t restaurantsystem.backend .`
 -   `docker run -p 8000:8000 backend`
